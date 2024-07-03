@@ -67,7 +67,7 @@ class RegisPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Loginpage()));
+                                    builder: (context) => LoginPage()));
                           },
                           child: Text('Kembali')),
                       ElevatedButton(
@@ -75,7 +75,7 @@ class RegisPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Loginpage()));
+                                    builder: (context) => LoginPage()));
                           },
                           child: Text('Simpan')),
                     ],

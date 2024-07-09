@@ -28,8 +28,13 @@
 //         )));
 //   }
 // }
+
+
+
 import 'package:flutter/material.dart';
+import 'package:myapp/profilPage.dart';
 import 'webView.dart'; // Pastikan impor ini benar
+import 'kalkulator.dart'; // Tambahkan ini
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -40,7 +45,7 @@ class Homepage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Kelompok 5'),
+          title: Text('Borobudur Society'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -49,10 +54,10 @@ class Homepage extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                color: Colors.blue[700],
+                color: Colors.lightBlue,
                 child: Column(
                   children: [
-                    buildProfileInfo('Ferry Kurniawan', '2100063', Icons.exit_to_app),
+                    buildProfileInfo('Kelompok 5', 'Rpl & Mobile', Icons.exit_to_app),
                   ],
                 ),
               ),
@@ -69,19 +74,19 @@ class Homepage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => WebViewPage()),
                       );
                     }),
-                    buildMenuButton('Kalkulator', Icons.calendar_today, Colors.lightBlue, () {
+                    buildMenuButton('Kalkulator', Icons.calculate, Colors.lightBlue, () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CalculatorPage()),
+                        MaterialPageRoute(builder: (context) => Kalkulator()),
                       );
                     }),
-                    buildMenuButton('Aplikasi C', Icons.calendar_today, Colors.lightBlue, () {
+                    buildMenuButton('Profil', Icons.people_alt, Colors.lightBlue, () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ApplicationCPage()),
+                        MaterialPageRoute(builder: (context) => ProfileScreen()),
                       );
                     }),
-                    buildMenuButton('Aplikasi D', Icons.calendar_today, Colors.lightBlue, () {
+                    buildMenuButton('Aplikasi D', Icons.apps, Colors.lightBlue, () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ApplicationDPage()),
@@ -154,33 +159,8 @@ class Homepage extends StatelessWidget {
   }
 }
 
-class CalculatorPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Kalkulator'),
-      ),
-      body: Center(
-        child: Text('Ini adalah halaman Kalkulator'),
-      ),
-    );
-  }
-}
 
-class ApplicationCPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Aplikasi C'),
-      ),
-      body: Center(
-        child: Text('Ini adalah halaman Aplikasi C'),
-      ),
-    );
-  }
-}
+
 
 class ApplicationDPage extends StatelessWidget {
   @override

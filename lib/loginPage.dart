@@ -241,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text(''),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -257,7 +257,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: EdgeInsets.symmetric(vertical: 20.0),
                     child: Image.asset(
                       'assets/images/gambar-logo.png',
-                      height: 100,
+                      height: 200,
                     ),
                   ),
                   TextFormField(
@@ -265,7 +265,10 @@ class _LoginPageState extends State<LoginPage> {
                     controller: usernameController,
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      prefixIcon: Icon(Icons.email),
                       errorText: !isEmailValid && emailFieldTouched
                           ? 'Masukkan minimal 3 huruf'
                           : null,
@@ -283,7 +286,10 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      prefixIcon: Icon(Icons.lock),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -293,10 +299,31 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: handleSubmit,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.lightBlue, // set the background color
+                      minimumSize: Size(double.infinity, 50), // same width as input fields
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white, // set the text color to white
+                        fontWeight: FontWeight.w600, // set the text to semi-bold
+                      ),
+                    ),
+                  ),
+
+
+                  SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
+                      Text('Belum punya akun? '),
+                      TextButton(
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -304,10 +331,6 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                         child: Text('Register'),
-                      ),
-                      ElevatedButton(
-                        onPressed: handleSubmit,
-                        child: Text('Login'),
                       ),
                     ],
                   ),

@@ -4,7 +4,6 @@ class Kalkulator extends StatefulWidget {
   const Kalkulator({Key? key}) : super(key: key);
 
   @override
-  
   State<Kalkulator> createState() => _KalkulatorState();
 }
 
@@ -82,11 +81,17 @@ class _KalkulatorState extends State<Kalkulator> {
         floatingActionButton: FloatingActionButton(
           onPressed: clearCalculator,
           tooltip: 'Clear',
-          child: const Text('C'),
+          backgroundColor: Colors.red,
+          child: const Text('C', style: TextStyle(fontSize: 24)),
         ),
-        
         appBar: AppBar(
-          title: const Text('Calculator'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          title: const Text('Kalkulator'),
           backgroundColor: Colors.lightBlue,
         ),
         body: Padding(
@@ -96,8 +101,7 @@ class _KalkulatorState extends State<Kalkulator> {
             children: [
               Container(
                 alignment: Alignment.centerRight,
-                padding: const EdgeInsets.symmetric(
-                    vertical: 24.0, horizontal: 12.0),
+                padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 12.0),
                 child: Text(
                   display,
                   style: const TextStyle(
@@ -148,9 +152,7 @@ class CalculatorButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
 
-  const CalculatorButton(
-      {Key? key, required this.label, required this.onPressed})
-      : super(key: key);
+  const CalculatorButton({Key? key, required this.label, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +167,7 @@ class CalculatorButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           label,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );

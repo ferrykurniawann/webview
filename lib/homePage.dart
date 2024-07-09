@@ -33,6 +33,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:myapp/profilPage.dart';
+import 'package:myapp/todolist.dart';
 import 'webView.dart'; // Pastikan impor ini benar
 import 'kalkulator.dart'; // Tambahkan ini
 
@@ -45,7 +46,8 @@ class Homepage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Borobudur Society'),
+          // title: Text('Borobudur Society'),
+          backgroundColor: Colors.lightBlue,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -54,10 +56,13 @@ class Homepage extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                color: Colors.lightBlue,
+                decoration: BoxDecoration(
+                  color: Colors.lightBlue,
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 child: Column(
                   children: [
-                    buildProfileInfo('Kelompok 5', 'Rpl & Mobile', Icons.exit_to_app),
+                    buildProfileInfo('Borobudur Society', 'Kelompok 5', Icons.exit_to_app),
                   ],
                 ),
               ),
@@ -86,10 +91,10 @@ class Homepage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => ProfileScreen()),
                       );
                     }),
-                    buildMenuButton('Aplikasi D', Icons.apps, Colors.lightBlue, () {
+                    buildMenuButton('To do List', Icons.book_rounded, Colors.lightBlue, () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => ApplicationDPage()),
+                        MaterialPageRoute(builder: (context) => todolist()),
                       );
                     }),
                   ],
@@ -105,10 +110,10 @@ class Homepage extends StatelessWidget {
   Widget buildProfileInfo(String name, String id, IconData icon) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white),
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +123,7 @@ class Homepage extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 4),
               Text(
@@ -134,43 +139,33 @@ class Homepage extends StatelessWidget {
   }
 
   Widget buildMenuButton(String title, IconData icon, Color color, VoidCallback onPressed) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        padding: EdgeInsets.symmetric(vertical: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 50, color: Colors.white),
-          SizedBox(height: 10),
-          Text(
-            title,
-            style: TextStyle(color: Colors.white, fontSize: 16),
-            textAlign: TextAlign.center,
+      elevation: 4,
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: color,
           ),
-        ],
-      ),
-    );
-  }
-}
-
-
-
-
-class ApplicationDPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Aplikasi D'),
-      ),
-      body: Center(
-        child: Text('Ini adalah halaman Aplikasi D'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 50, color: Colors.white),
+              SizedBox(height: 10),
+              Text(
+                title,
+                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

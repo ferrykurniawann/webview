@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:myapp/homePage.dart';
+import 'package:myapp/homePage.dart';
 import 'package:myapp/loginPage.dart';
 // import 'package:myapp/registrationPage.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
         debugShowCheckedModeBanner: false,
-        home: LoginPage());
+        home: Homepage());
   }
 }
 

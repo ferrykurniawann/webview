@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class todolist extends StatefulWidget {
-  const todolist({Key? key}) : super(key: key);
+class ToDoList extends StatefulWidget {
+  const ToDoList({Key? key}) : super(key: key);
 
   @override
-  State<todolist> createState() => _ToDoListState();
+  State<ToDoList> createState() => _ToDoListState();
 }
 
-class _ToDoListState extends State<todolist> {
+class _ToDoListState extends State<ToDoList> {
   final List<String> _toDoItems = [];
   final TextEditingController _textFieldController = TextEditingController();
 
@@ -118,7 +118,12 @@ class _ToDoListState extends State<todolist> {
                           borderRadius: BorderRadius.circular(30.0),
                         ),
                       ),
-                      child: Text('Add'),
+                      child: Text(
+                        'Add',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -134,5 +139,5 @@ class _ToDoListState extends State<todolist> {
 }
 
 void main() {
-  runApp(const todolist());
+  runApp(const ToDoList());
 }

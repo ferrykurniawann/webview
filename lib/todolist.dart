@@ -31,10 +31,21 @@ class _ToDoListState extends State<todolist> {
       itemCount: _toDoItems.length,
       itemBuilder: (context, index) {
         return Card(
+          elevation: 2,
           child: ListTile(
-            title: Text(_toDoItems[index]),
+            leading: Checkbox(
+              value: false,
+              onChanged: (bool? value) {},
+            ),
+            title: Text(
+              _toDoItems[index],
+              style: TextStyle(
+                fontSize: 18,
+                decoration: false ? TextDecoration.lineThrough : null,
+              ),
+            ),
             trailing: IconButton(
-              icon: Icon(Icons.delete),
+              icon: Icon(Icons.close),
               onPressed: () => _removeToDoItem(index),
             ),
           ),
@@ -55,34 +66,73 @@ class _ToDoListState extends State<todolist> {
               Navigator.pop(context);
             },
           ),
-          title: const Text('To do List'),
-          backgroundColor: Colors.lightBlue,
+          title: const Text('To-Do List'),
+          backgroundColor: Colors.blueAccent,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextField(
-                controller: _textFieldController,
-                decoration: const InputDecoration(
-                  labelText: 'Masukkan task',
+        body: Center(
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
                 ),
-                onSubmitted: _addToDoItem,
-              ),
-              const SizedBox(height: 20),
-              Expanded(
-                child: _buildToDoList(),
-              ),
-            ],
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'To-Do List 📝',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _textFieldController,
+                        decoration: InputDecoration(
+                          hintText: 'Add your text',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () => _addToDoItem(_textFieldController.text),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                      ),
+                      child: Text('Add'),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Expanded(child: _buildToDoList()),
+              ],
+            ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _addToDoItem(_textFieldController.text),
-          tooltip: 'Add task',
-          backgroundColor: Colors.lightBlue,
-          child: const Icon(Icons.add),
         ),
       ),
     );
   }
+}
+
+void main() {
+  runApp(const todolist());
 }

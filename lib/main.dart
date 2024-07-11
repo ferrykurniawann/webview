@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/homePage.dart';
-import 'package:myapp/loginPage.dart';
+import 'homePage.dart';
+import 'loginPage.dart';
 // import 'package:myapp/registrationPage.dart';
 
 void main() {
@@ -13,12 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1944089679.
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-        debugShowCheckedModeBanner: false,
-        home: Homepage());
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(), // Use the correct class name HomePage
+    );
   }
 }
-
